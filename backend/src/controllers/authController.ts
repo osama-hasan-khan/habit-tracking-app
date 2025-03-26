@@ -3,10 +3,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User";
 import generateToken from "../utils/generateToken";
 
-export const registerUser = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const registerUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   try {
@@ -34,7 +31,7 @@ export const registerUser = async (
   }
 };
 
-export const loginUser = async (req: Request, res: Response): Promise<void> => {
+export const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
@@ -64,7 +61,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export const logoutUser = (req: Request, res: Response): void => {
+export const logoutUser = (req: Request, res: Response) => {
   try {
     res.cookie("auth-token", "", {
       httpOnly: true,

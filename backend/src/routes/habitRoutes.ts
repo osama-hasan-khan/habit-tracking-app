@@ -1,17 +1,19 @@
-// import express from "express";
-// import { protect } from "../middlewares/auth";
-// import {
-//   createHabit,
-//   getHabits,
-//   updateHabit,
-//   deleteHabit,
-// } from "../controllers/habitController";
+import express from "express";
 
-// const router = express.Router();
 
-// router.post("/", protect, createHabit);
-// router.get("/", protect, getHabits);
-// router.put("/:id", protect, updateHabit);
-// router.delete("/:id", protect, deleteHabit);
+import {
+  createHabit,
+  getHabits,
+  updateHabit,
+  deleteHabit,
+} from "../controllers/habitController";
+import { authenticateUser } from "../middlewares/auth";
 
-// export default router;
+const router = express.Router();
+
+router.post("/", authenticateUser, createHabit);
+router.get("/", authenticateUser, getHabits);
+router.put("/:id", authenticateUser, updateHabit);
+router.delete("/:id", authenticateUser, deleteHabit);
+
+export default router;
